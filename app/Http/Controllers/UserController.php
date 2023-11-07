@@ -31,7 +31,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'string', 'confirmed', 'min:8'],
             'password_confirmation' => ['required'],
-            'profile' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'profile' => ['required', 'image', 'mimes:jpeg,png,jpg'],
             'type' => ['required'],
             'dob' => [],
             'address' => ['max:255'],
@@ -97,7 +97,11 @@ class UserController extends Controller
         }
 
         $id->update($inputField);
-        return redirect('/users')->with('message', 'User Updated Successfully!');
+        if (auth()->user()->type == 0) {
+            return redirect('/users')->with('message', 'User Updated Successfully!');
+        } else {
+            return redirect('/posts')->with('message', 'User Updated Successfully!');
+        }
     }
 
     public function destroy(User $id)

@@ -18,16 +18,22 @@
         <p class="text-red-700 text-sm mt-1">{{$message}}</p>
       @enderror
     </div>
-    <div class="mb-6">
+    <div class="mb-6 relative" x-data="{show : true}">
       <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-      <input type="password" name="password" value="{{old('password')}}" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+      <input :type="show ? 'password' : 'text'" name="password" value="{{old('password')}}" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+      <div class="absolute inset-y-0 cursor-pointer right-0 pr-3 flex items-center text-sm leading-5 font-medium">
+        <p class=" mt-5" @click="show=! show" x-text=" show ? 'Show' : 'Hide' "></p>
+      </div>
       @error('password')
         <p class="text-red-700 text-sm mt-1">{{$message}}</p>
       @enderror
     </div>
-    <div class="mb-6">
+    <div class="mb-6 relative" x-data="{show : true}">
       <label for="password2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
-      <input type="password" name="password_confirmation" value="{{old('password')}}" id="password2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+      <input :type="show ? 'password' : 'text'" name="password_confirmation" value="{{old('password')}}" id="password2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+      <div class="absolute inset-y-0 cursor-pointer right-0 pr-3 flex items-center text-sm leading-5 font-medium">
+        <p class=" mt-5" @click="show=! show" x-text=" show ? 'Show' : 'Hide' "></p>
+      </div>
       @error('password_confirmation')
         <p class="text-red-700 text-sm mt-1">{{$message}}</p>
       @enderror
