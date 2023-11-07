@@ -1,5 +1,9 @@
 <x-navbar/>
 
+<?php
+use Illuminate\Support\Str;
+?>
+
 <div class="container mx-auto">
     <div class="flex justify-between mt-5 items-center flex-wrap mx-3">
         <form class="flex items-center" action="/posts">
@@ -19,6 +23,7 @@
             @endif
         </form>
 
+        @if (!str::contains(url()->current(),'my-post'))
         <div>
             <a href="/post/create">
                 <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Create</button>
@@ -30,6 +35,7 @@
                 <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Download</button>
             </a>
         </div>
+        @endif
     </div>
     
     <div class="flex justify-center flex-wrap mt-10">
