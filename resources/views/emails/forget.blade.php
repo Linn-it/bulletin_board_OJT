@@ -39,7 +39,7 @@
   <p style="color: #242424">Hello {{$user->name}}!</p>
 
   <div style="margin-bottom: 20px">
-    <a class="reset-btn" href="http://localhost:8000/reset-password/{{$token}}">
+    <a class="reset-btn" href="https://bulletinboardojt-production-0ec5.up.railway.app/reset-password/{{$token}}">
       Reset Password Link
     </a>
   </div>

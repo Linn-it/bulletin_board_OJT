@@ -17,14 +17,6 @@ class Post extends Model
         'updated_user_id',
     ];
 
-    public function allPost()
-    {
-        dd($this);
-        // if($this->status == 1){
-        //     return $this;
-        // }
-    }
-
     public function scopeFilter($query, $filters)
     {
         if ($filters ?? false) {

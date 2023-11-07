@@ -21,7 +21,7 @@ class postImport implements ToModel, WithHeadingRow, WithValidation
         return new Post([
             "title" => $row['title'],
             "description" => $row['description'],
-            "status" => $row['status'],
+            "status" => 1,
             "created_user_id" => Auth::user()->id,
             "updated_user_id" => Auth::user()->id,
         ]);
