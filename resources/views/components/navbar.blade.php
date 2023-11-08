@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>BulletinBoard</title>
   <script src="//unpkg.com/alpinejs" defer></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @vite(['resources/css/app.css','resources/js/app.js'])
@@ -17,10 +17,17 @@ use Illuminate\Support\Str;
 
 <nav class="bg-gray-300 border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="" class="flex items-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" class="h-8 mr-3" alt="Flowbite Logo" />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Bulletin Board</span>
-    </a>
+    <div class="{{str::contains(url()->current(),'register') ? 'flex justify-between items-center w-full' : ''}}">
+      <a href="" class="flex items-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" class="h-8 mr-3" alt="Flowbite Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Bulletin Board</span>
+      </a>
+      @if (str::contains(url()->current(),'register'))
+      <a href="/login">
+        <button class="text-white mt-1.5 bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Login</button>
+      </a>
+      @endif
+    </div>
   @if (Auth::check())
   <div class="flex items-center md:order-2">
     <div class="flex justify-center items-center">

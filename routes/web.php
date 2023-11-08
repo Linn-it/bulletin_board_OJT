@@ -81,6 +81,8 @@ Route::delete('/user-delete/{id}', [UserController::class, 'destroy']);
 // Export & Import
 Route::get('/post_export', [PostController::class, 'getPostData'])->name('post_export');
 
+Route::get('/my-post/post_export', [PostController::class, 'getOwnPostData'])->name('my-post/post_export');
+
 Route::get('/post_import', [PostController::class, 'showImport']);
 
 Route::post('/import_post', [PostController::class, 'importExcel']);

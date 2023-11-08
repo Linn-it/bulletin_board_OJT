@@ -12,10 +12,12 @@ class postExport implements FromCollection, WithHeadings, WithMapping
 {
 
     private $filter;
+    // private $ownPost;
 
     public function __construct($filter = null)
     {
         $this->filter = $filter;
+        // $this->ownPost = $ownPost;
     }
 
     /**
@@ -39,6 +41,10 @@ class postExport implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         $query = Post::query();
+
+        // if ($this->ownPost) {
+        //     $query->where('created_user_id', auth()->user()->id);
+        // }
 
         if ($this->filter) {
             $query->where(function ($filterquery) {

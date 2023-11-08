@@ -50,7 +50,7 @@ use Illuminate\Support\Str;
             <a href="/post_import">
                 <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload</button>
             </a>
-            <a href="{{route('post_export',['search' => request('search')])}}">
+            <a href="{{str::contains(url()->current(),'my-post') ? route('my-post/post_export',['search' => request('search')]) : route('post_export',['search' => request('search')])}}">
                 <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Download</button>
             </a>
         </div>
@@ -64,8 +64,8 @@ use Illuminate\Support\Str;
             <div class="flex flex-col items-center pb-5">
                 <img class="w-20 mt-4 object-cover h-20 mb-3 rounded-full shadow-lg" src="{{$post['user']['profile'] ? asset('storage/'.$post['user']['profile']) : 'https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.988097705.1691639176&semt=ais'}}" alt="Bonnie image"/>
                 <span class="mb-1 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-4 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{$post['status'] == 1 ? 'Active' : 'Inactive'}}</span>
-                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{$post['title']}}</h5>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{$post['description']}}</span>
+                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white text-center w-2/3 truncate">{{$post['title']}}</h5>
+                <span class="text-sm text-gray-500 text-center dark:text-gray-400 w-2/3 truncate">{{$post['description']}}</span>
             </div>
             <div class="flex justify-center">
               <a href="/post/detail/{{$post['id']}}" type="button" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View</a>
@@ -76,8 +76,9 @@ use Illuminate\Support\Str;
             <img class="mt-7 rounded-md" width="400" height="400" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=740&t=st=1699244170~exp=1699244770~hmac=fdb526499b2d9f1133e6af1acb8c423615965f5271be3893d93fc537c96dc6a9" alt="">    
         @endif
     </div>
+    <div class="mt-8">
+        {{$posts->links()}}
+    </div>
 </div>
 
-<div class="mt-8 px-4">
-    {{$posts->links()}}
-  </div>
+

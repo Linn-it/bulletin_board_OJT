@@ -112,6 +112,13 @@ class PostController extends Controller
         return Excel::download($export, 'posts.xlsx');
     }
 
+    // public function getOwnPostData(Request $request)
+    // {
+    //     $filter = $request->input('search');
+    //     $export = new postExport($filter, 'ownpost');
+    //     return Excel::download($export, 'posts.xlsx');
+    // }
+
     public function showImport()
     {
         return view('post.importUpload');
