@@ -2,49 +2,55 @@
 
 <form class="flex justify-center items-center my-10" action="/user/create" method="post">
   @csrf
-  <div style="background : #f5f2f2" class="w-72 sm:w-96 py-6 px-9 rounded-lg">
+  <div style="background : #f5f2f2" class="w-72 sm:w-2/5 py-6 px-9 rounded-lg">
   <h2 class="text-center text-2xl text-gray-700 mb-3">Create Confirm User</h2>
-    <div class="mb-6">
-      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-      <input type="text" name="name" value="{{$datas['name']}}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
-      @error('name')
-        <p class="text-red-700 text-sm mt-1">{{$message}}</p>
-      @enderror
+    <div class="flex gap-3 w-full mb-4">
+      <div class="w-full">
+        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+        <input type="text" name="name" value="{{$datas['name']}}" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
+        @error('name')
+          <p class="text-red-700 text-sm mt-1">{{$message}}</p>
+        @enderror
+      </div>
+      <div class="w-full">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email Address</label>
+        <input type="text" name="email" value="{{$datas['email']}}" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
+        @error('email')
+          <p class="text-red-700 text-sm mt-1">{{$message}}</p>
+        @enderror
+      </div>
     </div>
-    <div class="mb-6">
-      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email Address</label>
-      <input type="text" name="email" value="{{$datas['email']}}" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
-      @error('email')
-        <p class="text-red-700 text-sm mt-1">{{$message}}</p>
-      @enderror
+    <div class="flex gap-3 w-full mb-4">
+      <div class="w-full">
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+        <input type="password" name="password" value="{{$datas['password']}}" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
+        @error('password')
+          <p class="text-red-700 text-sm mt-1">{{$message}}</p>
+        @enderror
+      </div>
+      <div class="w-full">
+        <label for="password2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+        <input type="password" name="password_confirmation" value="{{$datas['password_confirmation']}}" id="password2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
+        @error('password_confirmation')
+          <p class="text-red-700 text-sm mt-1">{{$message}}</p>
+        @enderror
+      </div>
     </div>
-    <div class="mb-6">
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-      <input type="password" name="password" value="{{$datas['password']}}" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
-      @error('password')
-        <p class="text-red-700 text-sm mt-1">{{$message}}</p>
-      @enderror
-    </div>
-    <div class="mb-6">
-      <label for="password2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
-      <input type="password" name="password_confirmation" value="{{$datas['password_confirmation']}}" id="password2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
-      @error('password_confirmation')
-        <p class="text-red-700 text-sm mt-1">{{$message}}</p>
-      @enderror
-    </div>
-    <div class="mb-6">
-      <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-      <input type="text" name="type" value="{{$datas['type'] == '1' ? "User" : 'Admin'}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
-      @error('type')
-        <p style="color: red">{{$message}}</p>
-      @enderror
-    </div>
-    <div class="mb-6">
-      <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-      <input type="number" name="phone" value="{{$datas['phone']}}" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
-      @error('phone')
-        <p class="text-red-700 text-sm mt-1">{{$message}}</p>
-      @enderror
+    <div class="flex gap-3 w-full mb-4">
+      <div class="w-full">
+        <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+        <input type="text" name="type" value="{{$datas['type'] == '1' ? "User" : 'Admin'}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
+        @error('type')
+          <p style="color: red">{{$message}}</p>
+        @enderror
+      </div>
+      <div class="w-full">
+        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+        <input type="number" name="phone" value="{{$datas['phone']}}" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" readonly>
+        @error('phone')
+          <p class="text-red-700 text-sm mt-1">{{$message}}</p>
+        @enderror
+      </div>
     </div>
     <div class="mb-6">
       <label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Of Birth</label>

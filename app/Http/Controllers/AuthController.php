@@ -143,7 +143,7 @@ class AuthController extends Controller
 
         // password matches
         if (!Hash::check($request['currentPassword'], $loginUser['password'])) {
-            return back()->withErrors(['currentPassword' => 'CurrentPassword is wrong!'])->onlyInput('currentPassword');
+            return back()->withErrors(['currentPassword' => 'CurrentPassword is incorrect!'])->onlyInput('currentPassword');
         }
 
         // current password and new Password same

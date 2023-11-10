@@ -14,8 +14,9 @@ class UserController extends Controller
 
     public function showUser()
     {
+        $pageSize = request('pageSize', 3);
         return view('user.users', [
-            'users' => User::latest()->filter(request(['name', 'email', 'fromDate', 'toDate']))->paginate(3)
+            'users' => User::latest()->filter(request(['name', 'email', 'fromDate', 'toDate']))->paginate($pageSize)
         ]);
     }
 

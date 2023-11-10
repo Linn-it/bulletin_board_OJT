@@ -6,13 +6,18 @@ use App\Models\Post;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class postImport implements ToModel, WithHeadingRow, WithValidation
+class postImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnError, SkipsOnFailure
 {
+    use Importable, SkipsErrors, SkipsFailures;
     /**
      * @param Collection $collection
      */
@@ -21,7 +26,7 @@ class postImport implements ToModel, WithHeadingRow, WithValidation
         return new Post([
             "title" => $row['title'],
             "description" => $row['description'],
-            "status" => 1,
+            "status" => $row['status'],
             "created_user_id" => Auth::user()->id,
             "updated_user_id" => Auth::user()->id,
         ]);
@@ -33,9 +38,12 @@ class postImport implements ToModel, WithHeadingRow, WithValidation
 
             '*.title' => [
                 'required',
-                Rule::unique('posts', 'title')->where(function ($query) {
-                    return $query->where('created_user_id', Auth::user()->id);
-                }),
+            ],
+            '*.description' => [
+                'required'
+            ],
+            '*.status' => [
+                'required'
             ]
         ];
     }

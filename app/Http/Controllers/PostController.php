@@ -13,16 +13,19 @@ use Maatwebsite\Excel\Facades\Excel;
 class PostController extends Controller
 {
     public function showPost()
+
     {
+        $pageSize = request('pageSize', 3);
         return view('post.posts', [
-            'posts' => Post::where('status', 1)->latest()->filter(request('search'))->paginate(3)
+            'posts' => Post::where('status', 1)->latest()->filter(request('search'))->paginate($pageSize)
         ]);
     }
 
     public function showOwnPost()
     {
+        $pageSize = request('pageSize', 3);
         return view('post.posts', [
-            'posts' => Post::where('created_user_id', auth()->user()->id)->latest()->filter(request('search'))->paginate(3)
+            'posts' => Post::where('created_user_id', auth()->user()->id)->latest()->filter(request('search'))->paginate($pageSize)
         ]);
     }
 
@@ -130,7 +133,14 @@ class PostController extends Controller
             'fileUpload' => ['required', 'file', 'mimes : csv,xlsx']
         ]);
 
-        Excel::import(new postImport, $request->file('fileUpload'));
+        // $import = Excel::import(new postImport, $request->file('fileUpload'));
+        $import = new postImport();
+        $import->import($request->file('fileUpload'));
+        if ($import->failures()->isNotEmpty()) {
+            return redirect('/post_import')->with('message', 'Title,description or status should not be empty!');
+        } else if ($import->errors()->count() !== 0) {
+            return redirect('/post_import')->with('message', 'Your import file is duplicate!');
+        }
         return redirect('/posts');
     }
 }

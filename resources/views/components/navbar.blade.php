@@ -18,17 +18,32 @@ use Illuminate\Support\Str;
 <nav class="bg-gray-300 border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <div class="{{str::contains(url()->current(),'register') ? 'flex justify-between items-center w-full' : ''}}">
-      <a href="" class="flex items-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" class="h-8 mr-3" alt="Flowbite Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Bulletin Board</span>
-      </a>
+      <div class="flex">
+        <a href="" class="flex items-center me-12">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" class="h-8 mr-3" alt="Flowbite Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Bulletin Board</span>
+        </a>
+        @if (Auth::check())
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            @if (Auth::user()->type == 0)
+            <li>
+              <a href="/users" class="{{str::contains(url()->current(),'user') ? 'text-blue-500' : ''}} block py-2 pl-3 pr-4 font-semibold rounded md:bg-transparent md:p-0" aria-current="page">User</a>
+            </li>
+            @endif
+            <li>
+              <a href="/posts" class="{{str::contains(url()->current(),'post') ? 'text-blue-500' : ''}} block py-2 pl-3 pr-4 font-semibold rounded md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Post</a>
+            </li>
+          </ul>
+        </div>
+      </div>
       @if (str::contains(url()->current(),'register'))
       <a href="/login">
         <button class="text-white mt-1.5 bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Login</button>
       </a>
       @endif
     </div>
-  @if (Auth::check())
+  
   <div class="flex items-center md:order-2">
     <div class="flex justify-center items-center">
       <a href="/posts/my-post">
@@ -63,21 +78,10 @@ use Illuminate\Support\Str;
       </svg>
   </button>
 </div>
-<div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-      @if (Auth::user()->type == 0)
-      <li>
-        <a href="/users" class="{{str::contains(url()->current(),'user') ? 'text-blue-500' : ''}} block py-2 pl-3 pr-4 font-semibold rounded md:bg-transparent md:p-0" aria-current="page">User</a>
-      </li>
-      @endif
-      <li>
-        <a href="/posts" class="{{str::contains(url()->current(),'post') ? 'text-blue-500' : ''}} block py-2 pl-3 pr-4 font-semibold rounded md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Post</a>
-      </li>
-    </ul>
-</div>
+<x-flash-message/>
   @endif
   </div>
 </nav>
-<x-flash-message/>
+
 </body>
 </html>
