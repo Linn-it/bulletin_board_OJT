@@ -67,7 +67,7 @@
       @enderror
     </div>
     <div class=" mb-6">
-      <label for="profile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">profile</label>
+      <label for="profile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile</label>
       <input type="text" name="profile" value="{{$datas['profile']}}" readonly hidden>
       <img src="{{asset('storage/'.$datas['profile'])}}" class="rounded" alt="">
       @error('profile')

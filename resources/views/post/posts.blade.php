@@ -76,7 +76,7 @@ use Illuminate\Support\Str;
             <img class="mt-7 rounded-md" width="400" height="400" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=740&t=st=1699244170~exp=1699244770~hmac=fdb526499b2d9f1133e6af1acb8c423615965f5271be3893d93fc537c96dc6a9" alt="">    
         @endif
     </div>
-    <div class="mt-8 mx-3">
+    <div class="mt-8 mx-4">
         <form action="{{!str::contains(url()->current(),'my-post') ? '/posts' : '/posts/my-post'}}" method="get">
             <label class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Page Size:</label>
             <select name="pageSize" onchange="this.form.submit()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
