@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 ?>
 
 <nav class="bg-gray-300 border-gray-200 dark:bg-gray-900">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2.5">
     <div class="{{str::contains(url()->current(),'register') ? 'flex justify-between items-center w-full' : ''}}">
       <div class="flex">
         <a href="" class="flex items-center me-12">
@@ -82,6 +82,5 @@ use Illuminate\Support\Str;
   @endif
   </div>
 </nav>
-
 </body>
 </html>

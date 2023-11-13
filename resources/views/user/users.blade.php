@@ -21,7 +21,7 @@
   <div class="flex justify-center flex-wrap">
     @if(count($users))
     @foreach ($users as $user)
-  <div class="w-full max-w-xs bg-white border mt-12 mx-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="w-full max-w-xs bg-white border mt-6 mx-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <div class="flex flex-col items-center px-4">
         <img class="w-20 mt-4 h-20 mb-3 rounded-full shadow-lg object-cover" src="{{$user['profile'] ? asset('storage/'.$user['profile']) : 'https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.988097705.1691639176&semt=ais'}}" alt="Bonnie image"/>
         <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-4 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{$user['type'] == 0 ? 'Admin' : 'User'}}</span>
@@ -45,7 +45,7 @@
     <img class="mt-10 rounded-md" width="400" height="400" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=740&t=st=1699244170~exp=1699244770~hmac=fdb526499b2d9f1133e6af1acb8c423615965f5271be3893d93fc537c96dc6a9" alt="">    
   @endif
   </div>
-  <div class="mt-8 mx-2">
+  <div class="mt-4 mx-2 flex justify-between">
     <form action="/users" method="get">
       <label class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Page Size:</label>
       <select name="pageSize" onchange="this.form.submit()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

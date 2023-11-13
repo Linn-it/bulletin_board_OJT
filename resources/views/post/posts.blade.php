@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 ?>
 
 <div class="container mx-auto">
-    <div class="flex justify-between mt-5 items-center flex-wrap mx-3">
+    <div class="flex justify-between mt-4 items-center flex-wrap mx-3">
         @if (!str::contains(url()->current(),'my-post'))
         <form class="flex items-center" action="/posts">
             <div class="flex">
@@ -57,13 +57,13 @@ use Illuminate\Support\Str;
         @endif
     </div>
     
-    <div class="flex justify-center flex-wrap mt-10">
+    <div class="flex justify-center flex-wrap">
         @if (count($posts))
         @foreach ($posts as $post)
-        <div class="w-72 md:w-80 bg-white border mt-12 mx-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col items-center pb-5">
-                <img class="w-20 mt-4 object-cover h-20 mb-3 rounded-full shadow-lg" src="{{$post['user']['profile'] ? asset('storage/'.$post['user']['profile']) : 'https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.988097705.1691639176&semt=ais'}}" alt="Bonnie image"/>
-                <span class="mb-1 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-4 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{$post['status'] == 1 ? 'Active' : 'Inactive'}}</span>
+        <div class="w-72 md:w-80 bg-white border mt-4 mx-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex flex-col items-center pb-2">
+                <img class="w-20 mt-2 object-cover h-20 mb-2 rounded-full shadow-lg" src="{{$post['user']['profile'] ? asset('storage/'.$post['user']['profile']) : 'https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=626&ext=jpg&ga=GA1.1.988097705.1691639176&semt=ais'}}" alt="Bonnie image"/>
+                <span class=" bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-4 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{$post['status'] == 1 ? 'Active' : 'Inactive'}}</span>
                 <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white text-center w-2/3 truncate">{{$post['title']}}</h5>
                 <span class="text-sm text-gray-500 text-center dark:text-gray-400 w-2/3 truncate">{{$post['description']}}</span>
             </div>
@@ -76,9 +76,9 @@ use Illuminate\Support\Str;
             <img class="mt-7 rounded-md" width="400" height="400" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=740&t=st=1699244170~exp=1699244770~hmac=fdb526499b2d9f1133e6af1acb8c423615965f5271be3893d93fc537c96dc6a9" alt="">    
         @endif
     </div>
-    <div class="mt-8 mx-4">
+    <div class="mt-4 mx-4 flex justify-between">
         <form action="{{!str::contains(url()->current(),'my-post') ? '/posts' : '/posts/my-post'}}" method="get">
-            <label class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Page Size:</label>
+            <label class="mb-1 text-sm font-medium text-gray-900 dark:text-white">Page Size:</label>
             <select name="pageSize" onchange="this.form.submit()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="3" {{request('pageSize') == 3 ? 'selected' : ''}}>3</option>
                 <option value="6" {{request('pageSize') == 6 ? 'selected' : ''}}>6</option>
