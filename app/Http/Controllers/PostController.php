@@ -141,6 +141,6 @@ class PostController extends Controller
         } else if ($import->errors()->count() !== 0) {
             return redirect('/post_import')->with('message', 'Your import file is duplicate!');
         }
-        return redirect('/posts');
+        return redirect('/posts')->with('message', 'Post Imported Successfully!');
     }
 }
